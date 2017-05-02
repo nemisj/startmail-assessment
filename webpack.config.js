@@ -3,6 +3,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin  = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const IS_PROD = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: [
@@ -40,22 +43,13 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css/,
-        use: [
+        test: /\.(css|scss|sass)$/,
+        use: IS_PROD ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [ { loader: 'css-loader', options: { modules: true } }, 'sass-loader' ]
+        }) : [
           'style-loader',
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.sass/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
-          },
+          { loader: 'css-loader', options: { modules: true } },
           'sass-loader'
         ]
       }
@@ -74,7 +68,7 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html'
+      template: path.join(__dirname, './src/index.html')
     })
   ],
 
@@ -85,3 +79,7 @@ module.exports = {
     hot: true,
   },
 };
+
+if (IS_PROD) {
+  module.exports.plugins.push(new ExtractTextPlugin('[name].css'));
+}
