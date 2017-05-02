@@ -2,22 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
+// global style
+import './assets/reset.css';
+import './index.sass';
+
 // Components
 import App from './components/app.jsx';
 
-window.render = (selector) => {
-  if (selector) {
-    // remember the container
-    render.selector = selector;
-  }
+const render = () => {
+  const node = document.querySelector('body > div');
+  ReactDOM.render(<App />, node);
+};
 
-  ReactDOM.render(
-    <App />, 
-    document.querySelector(render.selector)
-  );
-}
+render();
 
 if (module.hot) {  
   // Renders App every time a change in code happens.
-  module.hot.accept('./components/app.jsx', () => render());
+  module.hot.accept('./components/app.jsx', render);
 }
