@@ -1,0 +1,10 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Own build
+build
+
+# Npm install
+node_modules
