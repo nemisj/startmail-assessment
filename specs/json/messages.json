@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "sent": "2017-04-03T16:01:27Z",
+    "received": "2017-04-03T16:01:27Z",
+    "origin": {
+      "from": [
+        {
+          "name": "Alan Turing",
+          "address": "alan@startmail.com"
+        }
+      ],
+      "sender": null,
+      "reply_to": []
+    },
+    "destination": {
+      "cc": [],
+      "to": [
+        {
+          "name": "Maxwell Newman",
+          "address": "max@startmail.com"
+        }
+      ],
+      "bcc": []
+    },
+    "subject": "Test",
+    "unread": true,
+    "flagged": false,
+    "recent": false,
+    "replied": false,
+    "forwarded": false,
+    "attachments": false,
+    "encrypted": false,
+    "contents": [
+      1
+    ]
+  },
+  {
+    "id": 2,
+    "sent": "2017-04-03T18:21:53Z",
+    "received": "2017-04-03T18:21:53Z",
+    "origin": {
+      "from": [
+        {
+          "name": "Alan Turing",
+          "address": "alan@startmail.com"
+        }
+      ],
+      "sender": null,
+      "reply_to": []
+    },
+    "destination": {
+      "cc": [],
+      "to": [
+        {
+          "name": "Maxwell Newman",
+          "address": "max@startmail.com"
+        }
+      ],
+      "bcc": []
+    },
+    "subject": "Want to grab some coffee?",
+    "unread": false,
+    "flagged": false,
+    "recent": false,
+    "replied": false,
+    "forwarded": false,
+    "attachments": false,
+    "encrypted": false,
+    "contents": [
+      2
+    ]
+  },
+  {
+    "id": 3,
+    "sent": "2017-04-03T18:22:39Z",
+    "received": "2017-04-03T18:22:39Z",
+    "origin": {
+      "from": [
+        {
+          "name": "Maxwell Newman",
+          "address": "max@startmail.com"
+        }
+      ],
+      "sender": null,
+      "reply_to": []
+    },
+    "destination": {
+      "cc": [],
+      "to": [
+        {
+          "name": "Alan Turing",
+          "address": "alan@startmail.com"
+        }
+      ],
+      "bcc": []
+    },
+    "subject": "Just wanted to ask...",
+    "unread": false,
+    "flagged": false,
+    "recent": false,
+    "replied": false,
+    "forwarded": false,
+    "attachments": false,
+    "encrypted": false,
+    "contents": [
+      3
+    ]
+  },
+  {
+    "id": 4,
+    "sent": "2017-04-03T18:23:35Z",
+    "received": "2017-04-03T18:23:35Z",
+    "origin": {
+      "from": [
+        {
+          "name": "Maxwell Newman",
+          "address": "max@startmail.com"
+        }
+      ],
+      "sender": null,
+      "reply_to": []
+    },
+    "destination": {
+      "cc": [],
+      "to": [
+        {
+          "name": "Alan Turing",
+          "address": "alan@startmail.com"
+        }
+      ],
+      "bcc": []
+    },
+    "subject": "RE: Hey!",
+    "unread": false,
+    "flagged": false,
+    "recent": false,
+    "replied": false,
+    "forwarded": false,
+    "attachments": false,
+    "encrypted": false,
+    "contents": [
+      4
+    ]
+  }
+]

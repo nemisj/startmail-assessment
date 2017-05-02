@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "type": "inbox",
+    "label": "Inbox",
+    "selectable": false,
+    "total_messages": 2,
+    "unread_messages": 1,
+    "recent_messages": 1,
+    "messages": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 2,
+    "type": "drafts",
+    "label": "Drafts",
+    "selectable": false,
+    "total_messages": 0,
+    "unread_messages": 0,
+    "recent_messages": 0,
+    "messages": [
+      3
+    ]
+  },
+  {
+    "id": 3,
+    "type": "sent",
+    "label": "Sent",
+    "selectable": false,
+    "total_messages": 0,
+    "unread_messages": 0,
+    "recent_messages": 0,
+    "messages": [
+      4
+    ]
+  },
+  {
+    "id": 4,
+    "type": "junk",
+    "label": "Junk",
+    "selectable": false,
+    "total_messages": 0,
+    "unread_messages": 0,
+    "recent_messages": 0,
+    "messages": []
+  },
+  {
+    "id": 5,
+    "type": "trash",
+    "label": "Trash",
+    "selectable": false,
+    "total_messages": 0,
+    "unread_messages": 0,
+    "recent_messages": 0,
+    "messages": []
+  }
+]
