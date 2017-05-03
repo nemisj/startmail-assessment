@@ -4,7 +4,8 @@
   "description": "StartMail Front-end Assessment",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack -p"
+    "build": "NODE_ENV=production webpack -p",
+    "storybook": "start-storybook -p 6006"
   },
   "author": "Maks Nemisj <maks@nemisj.com>",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "@kadira/storybook": "^2.21.0"
   }
 }
