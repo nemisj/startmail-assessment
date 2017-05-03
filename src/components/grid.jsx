@@ -8,7 +8,7 @@ import styles from './grid.sass';
 class Grid extends React.Component {
   renderItem(key, from, createdAt, subject) {
     const format = {
-      sameDay: '[Today at] hh:mm',
+      sameDay: '[Today at] HH:mm',
       nextDay: '[Tomorrow]',
       nextWeek: 'dddd',
       lastDay: '[Yesterday]',
