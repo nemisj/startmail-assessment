@@ -20,7 +20,19 @@ export default () => {
         <div className={`container-fluid ${styles.fullHeght}`}>
           <div className={`row ${styles.fullHeght}`}>
             <navbar className={`col ${styles.navbarContiner}`}>
-              Navbar
+              <ul className={styles.menu}>
+                <li className={`${styles.menuItem} ${styles.menuItemActive}`}>Inbox</li>
+                <li className={styles.menuItem}>Drafts</li>
+                <li className={styles.menuItem}>Sent</li>
+                <li className={styles.menuItem}>Trash</li>
+                <li className={styles.menuItem}>Spam</li>
+              </ul>
+              <hr />
+              <ul>
+                <li>Contacts</li>
+                <li>Settings</li>
+                <li>Support</li>
+              </ul>
             </navbar>
             <div className={`col ${styles.mainContainer}`}>
               Main content
