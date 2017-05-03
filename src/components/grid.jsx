@@ -1,10 +1,21 @@
 import React from 'react';  
 import ReactDOM from 'react-dom';
 
+import moment from 'moment';
+
 import styles from './grid.sass';
 
 class Grid extends React.Component {
   renderItem(key, from, createdAt, subject) {
+    const format = {
+      sameDay: '[Today at] hh:mm',
+      nextDay: '[Tomorrow]',
+      nextWeek: 'dddd',
+      lastDay: '[Yesterday]',
+      lastWeek: '[Last] dddd',
+      sameElse: 'DD/MM/YYYY'
+    };
+
     return (
       <div className={`row ${styles.row}`} key={key}>
         <div className="col-10">
@@ -12,7 +23,7 @@ class Grid extends React.Component {
           <br/>
           <span className={styles.subject}>{subject}</span>
         </div>
-        <div className={`col-2 ${styles.createdAt}`}>{createdAt}</div>
+        <div className={`col-2 ${styles.createdAt}`}>{moment(createdAt).calendar(null, format)}</div>
       </div>
     );
   }
