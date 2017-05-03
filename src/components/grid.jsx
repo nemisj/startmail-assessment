@@ -18,12 +18,12 @@ class Grid extends React.Component {
 
     return (
       <div className={`row ${styles.row}`} key={key}>
-        <div className="col-10">
+        <div className="col-8">
           <b className={styles.from}>{from}</b>
           <br/>
           <span className={styles.subject}>{subject}</span>
         </div>
-        <div className={`col-2 ${styles.createdAt}`}>{moment(createdAt).calendar(null, format)}</div>
+        <div className={`col-4 ${styles.createdAt}`}>{moment(createdAt).calendar(null, format)}</div>
       </div>
     );
   }

@@ -31,9 +31,9 @@ class Inbox extends React.Component {
     }
 
     return (
-      <div className={`container-fluid full-height ${styles.inbox}`}>
+      <div className={`container-fluid full-height`}>
         <div className="row full-height">
-          <div className="col">
+          <div className="col no-gutters">
             <Grid items={emails} onClick={this.onClick} />
           </div>
           {viewerPane}
