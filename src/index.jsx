@@ -10,9 +10,23 @@ import './assets/grid.global.sass';
 // Components
 import App from './components/app.jsx';
 
+// redux
+import createReduxStore from './redux/createStore.js';
+import { load as loadMailboxes } from './redux/ducks/mailboxes.js';
+import { Provider } from 'react-redux';
+
+const store = createReduxStore({});
+
+store.dispatch(loadMailboxes())
+
 const render = () => {
   const node = document.querySelector('body > div');
-  ReactDOM.render(<App />, node);
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    node
+  );
 };
 
 render();

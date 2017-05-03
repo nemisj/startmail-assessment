@@ -6,6 +6,7 @@ import {
   NavLink,
   Switch
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import styles from './app.sass';
 
@@ -20,14 +21,21 @@ import {
 
 class App extends React.Component {
   renderNavBar() {
+    const mailboxesState = this.props.mailboxesState;
+
+    const mailboxItems = mailboxesState.loaded ? mailboxesState.data.map((mailbox) => {
+      return (
+        <li key={`mailbox_${mailbox.id}`}><NavLink 
+            className={styles.menuItem} 
+            activeClassName={styles.menuItemActive} 
+            to={`/${mailbox.type}`}>{mailbox.label}</NavLink></li>
+      );
+    }) : <div>Loading...</div>;
+
     return (
       <navbar className={`col ${styles.navbarContiner}`}>
         <ul className={styles.menu}>
-          <li><NavLink className={styles.menuItem} activeClassName={styles.menuItemActive} to="/inbox">Inbox</NavLink></li>
-          <li><NavLink className={styles.menuItem} activeClassName={styles.menuItemActive} to="/drafts">Drafts</NavLink></li>
-          <li><NavLink className={styles.menuItem} activeClassName={styles.menuItemActive} to="/sent">Sent</NavLink></li>
-          <li><NavLink className={styles.menuItem} activeClassName={styles.menuItemActive} to="/trash">Trash</NavLink></li>
-          <li><NavLink className={styles.menuItem} activeClassName={styles.menuItemActive} to="/spam">Spam</NavLink></li>
+          {mailboxItems}
         </ul>
         <div className={styles.devider}/>
         <ul>
@@ -40,24 +48,30 @@ class App extends React.Component {
   }
 
   renderMainContent() {
+    const routes = [];
+    const mailboxesState = this.props.mailboxesState;
+
+    mailboxesState.data.forEach((mailbox) => {
+      routes.push(
+        <Switch key={mailbox.id}>
+          <Route exact path={`/${mailbox.type}/view/:emailId`} render={route => (
+            <Inbox mailboxId={mailbox.id} emailId={route.match.params.emailId}/>
+          )}/>
+          <Route path={`/${mailbox.type}/`} component={Inbox} />
+        </Switch>
+      );
+    });
+
     return (
       <div className={`col ${styles.mainContainer}`}>
         <Route exact path="/" component={Inbox} />
-        <Switch>
-          <Route exact path="/inbox/view/:emailId" render={route => (
-            <Inbox emailId={route.match.params.emailId}/>
-          )}/>
-          <Route path="/inbox/" component={Inbox} />
-        </Switch>
-
-        <Route path="/drafts" component={Drafts} />
-        <Route path="/sent" component={Sent} />
-        <Route path="/trash" component={Trash} />
+        {routes}
       </div>
     );
   }
 
   render() {
+    console.log('App.render');
     return (
       <div className="full-height">
         <header className={`container-fluid ${styles.headerContainer}`}>
@@ -87,4 +101,19 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    mailboxesState: state.mailboxes
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+const ConnectedApp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+export default ConnectedApp;
