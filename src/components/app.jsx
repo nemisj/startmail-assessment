@@ -59,13 +59,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.fullHeght}>
+      <div className="full-height">
         <header className={`container-fluid ${styles.headerContainer}`}>
-          <div className={`row ${styles.fullHeght}`}>
-            <div className={`col ${styles.logoContainer} align-self-center ${styles.fullHeght}`}>
+          <div className={`row full-height`}>
+            <div className={`col align-self-center full-height ${styles.logoContainer}`}>
               <span className={styles.textStart}>start</span><span className={styles.textMail}>mail</span>
             </div>
-            <div className={`col align-self-center ${styles.fullHeght}`}>
+            <div className={`col align-self-center full-height`}>
               <h3 style={{display: 'inline-block'}} className={styles.title}>Inbox</h3>
               <Button label="Compose" mode="blue" />
               <Button label="Refresh" />
@@ -73,9 +73,9 @@ class App extends React.Component {
           </div>
         </header>
         <div className={styles.autoHeightContainer}>
-          <div className={`container-fluid ${styles.fullHeght}`}>
+          <div className={`container-fluid full-height`}>
             <Router>
-              <div className={`row ${styles.fullHeght}`}>
+              <div className={`row full-height`}>
                 {this.renderNavBar()}
                 {this.renderMainContent()}
               </div>

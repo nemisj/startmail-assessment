@@ -8,7 +8,9 @@ import styles from './inbox.sass';
 class Inbox extends React.Component {
   renderEmailItem() {
     if (this.props.emailId) {
-      return <div>Email: {this.props.emailId}</div>
+      return (
+        <div>Email: {this.props.emailId}</div>
+      );
     }
     return null;
   }
@@ -22,10 +24,20 @@ class Inbox extends React.Component {
       { createdAt: new Date().getTime(), from: 'Tijn Schmits', subject: 'Our visit on 10 june' }
     ];
 
+    const viewer = this.renderEmailItem();
+    let viewerPane = null;
+    if (viewer) {
+      viewerPane = <div className="col">{viewer}</div>
+    }
+
     return (
-      <div className={styles.inbox}>
-        <Grid items={emails} onClick={this.onClick} />
-        {this.renderEmailItem()}
+      <div className={`container-fluid full-height ${styles.inbox}`}>
+        <div className="row full-height">
+          <div className="col">
+            <Grid items={emails} onClick={this.onClick} />
+          </div>
+          {viewerPane}
+        </div>
       </div>
     );
   }
