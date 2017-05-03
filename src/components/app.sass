@@ -41,11 +41,26 @@ $text-color: #6e6e6e
 .mainContainer
   background-color: #dcdcdc
 
-
 .menuItem
   padding-right: 15px
   padding-left: 15px
+  line-height: 2.5em
+  font-weight: bold
+  cursor: pointer
+  background-color: #f0f0f0
+  transition: background-color 300ms linear;
+
+  &:hover
+    background-color: #dfdfdf
+    transition: background-color 200ms linear;
 
 .menuItemActive 
   background-color: #d8e5f9
   color: #303949
+  cursor: default
+  &:hover
+    background-color: #d8e5f9
+
+.devider
+  height: 1px
+  background-color: #dfdfdf

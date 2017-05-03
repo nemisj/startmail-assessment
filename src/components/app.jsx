@@ -27,11 +27,11 @@ export default () => {
                 <li className={styles.menuItem}>Trash</li>
                 <li className={styles.menuItem}>Spam</li>
               </ul>
-              <hr />
+              <div className={styles.devider}/>
               <ul>
-                <li>Contacts</li>
-                <li>Settings</li>
-                <li>Support</li>
+                <li className={styles.menuItem}>Contacts</li>
+                <li className={styles.menuItem}>Settings</li>
+                <li className={styles.menuItem}>Support</li>
               </ul>
             </navbar>
             <div className={`col ${styles.mainContainer}`}>
