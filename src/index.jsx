@@ -4,7 +4,8 @@ import { AppContainer } from 'react-hot-loader';
 
 // global style
 import './assets/reset.css';
-import './index.sass';
+import './index.global.sass';
+import './assets/grid.global.sass';
 
 // Components
 import App from './components/app.jsx';

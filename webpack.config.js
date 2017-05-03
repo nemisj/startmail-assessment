@@ -43,7 +43,15 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.global\.sass$/,
+        use: IS_PROD ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [ 'css-loader', 'sass-loader' ]
+        }) : [ 'style-loader', 'css-loader', 'sass-loader' ]
+      },
+      {
         test: /\.(css|scss|sass)$/,
+        exclude: /\.global\.sass/,
         use: IS_PROD ? ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [ { loader: 'css-loader', options: { modules: true } }, 'sass-loader' ]
