@@ -11,29 +11,12 @@ import styles from './app.sass';
 
 // components
 import Button from './button.jsx';
-
-class Inbox extends React.Component {
-  renderEmailItem() {
-    if (this.props.emailId) {
-      return <div>{this.props.emailId}</div>
-    }
-    return null;
-  }
-
-  render() {
-    return (
-      <div>
-        Inbox content
-        {this.renderEmailItem()}
-      </div>
-    );
-  }
-};
-
-const Drafts = (props) => <div>Draft content</div>;
-const Sent = (props) => <div>Sent content</div>;
-const Trash = (props) => <div>Trash content</div>;
-const Zork = (props) => <div>Zork content</div>;
+import Inbox from '../barrels/inbox.jsx';
+import {
+  Drafts,
+  Sent,
+  Trash
+} from '../barrels/skeletons.jsx';
 
 class App extends React.Component {
   renderNavBar() {
