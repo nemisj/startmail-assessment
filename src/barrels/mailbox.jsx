@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import Grid from '../components/grid.jsx';
 
-import styles from './inbox.sass';
+import styles from './mailbox.sass';
 
 import { load as loadMessages, getMessagesByMailbox } from '../redux/ducks/messages.js';
 

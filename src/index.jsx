@@ -8,7 +8,7 @@ import './index.global.sass';
 import './assets/grid.global.sass';
 
 // Components
-import App from './components/app.jsx';
+import App from './barrels/app.jsx';
 
 // redux
 import createReduxStore from './redux/createStore.js';

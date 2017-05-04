@@ -11,8 +11,8 @@ import { connect } from 'react-redux';
 import styles from './app.sass';
 
 // components
-import Button from './button.jsx';
-import Inbox from '../barrels/inbox.jsx';
+import Button from '../components/button.jsx';
+import Mailbox from './mailbox.jsx';
 import {
   Drafts,
   Sent,
@@ -55,16 +55,16 @@ class App extends React.Component {
       routes.push(
         <Switch key={mailbox.id}>
           <Route exact path={`/${mailbox.type}/view/:emailId`} render={route => (
-            <Inbox mailboxId={mailbox.id} emailId={route.match.params.emailId}/>
+            <Mailbox mailboxId={mailbox.id} emailId={route.match.params.emailId}/>
           )}/>
-          <Route path={`/${mailbox.type}/`} render={route => (<Inbox mailboxId={mailbox.id}/>)} />
+          <Route path={`/${mailbox.type}/`} render={route => (<Mailbox mailboxId={mailbox.id}/>)} />
         </Switch>
       );
     });
 
     return (
       <div className={`col no-gutters`}>
-        <Route exact path="/" component={Inbox} />
+        <Route exact path="/" component={Mailbox} />
         {routes}
       </div>
     );
@@ -80,7 +80,7 @@ class App extends React.Component {
               <span className={styles.textStart}>start</span><span className={styles.textMail}>mail</span>
             </div>
             <div className={`col align-self-center full-height`}>
-              <h3 style={{display: 'inline-block'}} className={styles.title}>Inbox</h3>
+              <h3 style={{display: 'inline-block'}} className={styles.title}>Mailbox</h3>
               <Button label="Compose" mode="blue" />
               <Button label="Refresh" />
             </div>
