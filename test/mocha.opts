@@ -1,0 +1,3 @@
+-r mocha.require.js
+-R spec
+--recursive

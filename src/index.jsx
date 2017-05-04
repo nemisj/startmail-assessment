@@ -18,9 +18,7 @@ import { Provider } from 'react-redux';
 
 const store = createReduxStore({});
 
-store.dispatch(loadMailboxes()).then(() => {
-  store.dispatch(loadMessages())
-});
+store.dispatch(loadMailboxes());
 
 const render = () => {
   const node = document.querySelector('body > div');

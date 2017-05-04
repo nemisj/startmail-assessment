@@ -6,7 +6,7 @@ import Grid from '../components/grid.jsx';
 
 import styles from './inbox.sass';
 
-import { getMessagesByMailbox } from '../redux/ducks/messages.js';
+import { load as loadMessages, getMessagesByMailbox } from '../redux/ducks/messages.js';
 
 class Mailbox extends React.Component {
   renderEmailItem() {
@@ -18,8 +18,12 @@ class Mailbox extends React.Component {
     return null;
   }
 
+  componentDidMount() {
+    this.props.loadMessages(this.props.mailboxId);
+  }
+
   render() {
-    const emails = getMessagesByMailbox(this.props.mailboxId, this.props.state).map(message => ({
+    const emails = this.props.messagesState.messages.map(message => ({
       from: message.origin.from[0].name,
       subject: message.subject,
       createdAt: message.received
@@ -44,11 +48,13 @@ class Mailbox extends React.Component {
   }
 };
 
-const mapStateToProps = (state, props) => {
-  return { state }
-};
+const mapStateToProps = (state, props) => ({
+  messagesState: getMessagesByMailbox(props.mailboxId, state)
+});
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  loadMessages: (id) => dispatch(loadMessages(id))
+});
 
 const ConnectedMailbox= connect(
   mapStateToProps,

@@ -40,17 +40,13 @@ export function reducer (state = initialState(), action = {}) {
   return state;
 }
 
-export function isLoaded(state) {
-  return !!state.mailboxes.loaded;
+export function isLoaded(globalState) {
+  return globalState.mailboxes.loaded;
 }
 
-export function getMailBox(id, state) {
-  if (!isLoaded(state)) {
-    return null
-  }
-
+export function getMailBox(id, globalState) {
   let mailbox = null;
-  state.mailboxes.data.some((m) => {
+  globalState.mailboxes.data.some((m) => {
     if (m.id === id) {
       mailbox = m;
       return true;
@@ -77,4 +73,10 @@ export function load() {
         error: err
       }))
   }
+}
+
+export {
+  LOAD,
+  LOAD_SUCCESS,
+  LOAD_FAIL
 }
