@@ -25,7 +25,11 @@ class Grid extends React.Component {
       sameElse: 'DD/MM/YYYY'
     };
 
-    const selectedClass = this.props.selected.indexOf(id) !== -1 ? styles.selected :  '';
+    let selectedClass = null;
+    const selected = this.props.selected;
+    if (Array.isArray(selected)) {
+      selectedClass = selected.indexOf(id) !== -1 ? styles.selected :  '';
+    }
 
     return (
       <div onClick={() => this.onClick(id)} className={`row ${styles.row} ${selectedClass}`} key={key}>
@@ -46,7 +50,7 @@ class Grid extends React.Component {
     }
 
     return (
-      <div className={`container-fluid ${styles.grid}`}>
+      <div className={`lolipo container-fluid ${styles.grid}`}>
         {children}
       </div>
     );

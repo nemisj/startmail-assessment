@@ -36,7 +36,7 @@ class Mailbox extends React.Component {
     if (emailItem) {
       const to = emailItem.origin.reply_to[0] || {};
       return (
-        <div className={`container-fluid full-height ${styles.viewerContainer}`}>
+        <div className={`container-fluid full-height`}>
           <div className="row">
             <div className="col">
               <span className={styles.subject}>{emailItem.subject}</span>
@@ -62,7 +62,6 @@ class Mailbox extends React.Component {
   }
 
   onClick(item) {
-    console.log(this.props);
     const history = this.props.history;
     const match = this.props.match;
     const origin = match.url.replace(/\/view.*/, '');
@@ -89,7 +88,7 @@ class Mailbox extends React.Component {
     }
 
     return (
-      <div className={`container-fluid full-height`}>
+      <div className={`inbox ${styles.inbox} container-fluid full-height`}>
         <div className="row full-height">
           <div className="col no-gutters">
             <Grid items={emails} selected={selected} onClick={this.onClick} />

@@ -63,7 +63,7 @@ class App extends React.Component {
     });
 
     return (
-      <div className={`col ${styles.mainContainer}`}>
+      <div className={`col no-gutters`}>
         <Route exact path="/" component={Inbox} />
         {routes}
       </div>
