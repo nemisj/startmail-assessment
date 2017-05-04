@@ -67,9 +67,9 @@ export function _filterMailboxMessagses(mailboxId, messages, globalState) {
   if (!Array.isArray(messages)) { return [] }
 
   const mailboxData = getMailBox(mailboxId, globalState) || {};
-  const mailboxMessageIds = mailboxData.messages || [];
+  const mailboxMessageIds = (mailboxData.messages || []).map((id) => String(id));
 
-  return messages.filter(message => mailboxMessageIds.indexOf(message.id) !== -1);
+  return messages.filter(message => mailboxMessageIds.indexOf(String(message.id)) !== -1);
 }
 
 export function load(mailboxId) {

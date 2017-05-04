@@ -5,7 +5,9 @@ describe('reducers/messages.spec.js', () => {
     const dispatch = sinon.spy();
     const loadFnc = load('the-id');
     const state = {
-      mailboxes: {}
+      mailboxes: {
+        data: []
+      }
     };
 
     return loadFnc(dispatch, () => state)
