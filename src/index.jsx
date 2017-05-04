@@ -13,11 +13,14 @@ import App from './components/app.jsx';
 // redux
 import createReduxStore from './redux/createStore.js';
 import { load as loadMailboxes } from './redux/ducks/mailboxes.js';
+import { load as loadMessages } from './redux/ducks/messages.js';
 import { Provider } from 'react-redux';
 
 const store = createReduxStore({});
 
-store.dispatch(loadMailboxes())
+store.dispatch(loadMailboxes()).then(() => {
+  store.dispatch(loadMessages())
+});
 
 const render = () => {
   const node = document.querySelector('body > div');

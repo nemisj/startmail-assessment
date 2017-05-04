@@ -57,7 +57,7 @@ class App extends React.Component {
           <Route exact path={`/${mailbox.type}/view/:emailId`} render={route => (
             <Inbox mailboxId={mailbox.id} emailId={route.match.params.emailId}/>
           )}/>
-          <Route path={`/${mailbox.type}/`} component={Inbox} />
+          <Route path={`/${mailbox.type}/`} render={route => (<Inbox mailboxId={mailbox.id}/>)} />
         </Switch>
       );
     });

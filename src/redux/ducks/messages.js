@@ -1,9 +1,11 @@
 // import Promise from 'bluebird';
-import jsonData from '../../../specs/json/mailboxes.json';
+import jsonData from '../../../specs/json/messages.json';
 
-const LOAD = 'startmail/mailboxes/LOAD';
-const LOAD_SUCCESS = 'startmail/mailboxes/SUCESS';
-const LOAD_FAIL = 'startmail/mailboxes/FAIL';
+import { getMailBox } from './mailboxes.js';
+
+const LOAD = 'startmail/messages/LOAD';
+const LOAD_SUCCESS = 'startmail/messages/SUCESS';
+const LOAD_FAIL = 'startmail/messages/FAIL';
 
 const initialState = () => ({
   loading: false,
@@ -41,23 +43,22 @@ export function reducer (state = initialState(), action = {}) {
 }
 
 export function isLoaded(state) {
-  return !!state.mailboxes.loaded;
+  return !!state.messages.loaded;
 }
 
-export function getMailBox(id, state) {
+export function getMessagesByMailbox(id, state) {
   if (!isLoaded(state)) {
-    return null
+    return [];
   }
 
-  let mailbox = null;
-  state.mailboxes.data.some((m) => {
-    if (m.id === id) {
-      mailbox = m;
-      return true;
-    }
-  });
+  const mailBox = getMailBox(id, state);
+  if (mailBox) {
+    const ids = mailBox.messages;
+    const result = state.messages.data.filter(message => ids.indexOf(message.id) !== -1);
+    return result;
+  }
 
-  return mailbox;
+  return [];
 }
 
 export function load() {
@@ -67,7 +68,7 @@ export function load() {
       // simulate data loading process
       setTimeout(() => {
         resolve(jsonData);
-      }, 2000);
+      }, 1000);
     })
       .then(json => dispatch({
         type: LOAD_SUCCESS,

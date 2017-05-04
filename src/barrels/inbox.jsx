@@ -1,11 +1,14 @@
 import React from 'react';  
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 import Grid from '../components/grid.jsx';
 
 import styles from './inbox.sass';
 
-class Inbox extends React.Component {
+import { getMessagesByMailbox } from '../redux/ducks/messages.js';
+
+class Mailbox extends React.Component {
   renderEmailItem() {
     if (this.props.emailId) {
       return (
@@ -16,13 +19,11 @@ class Inbox extends React.Component {
   }
 
   render() {
-    const emails = [
-      { createdAt: new Date(2012, 10,10).getTime(), from: 'Tijn Schmits', subject: 'Our visit on 10 june' },
-      { createdAt: new Date(2017, 4, 2).getTime(), from: 'Tijn Schmits', subject: 'Our visit on 10 june' },
-      { createdAt: new Date(2017, 4, 3).getTime(), from: 'Tijn Schmits', subject: 'Our visit on 10 june' },
-      { createdAt: new Date(2017, 3, 1).getTime(), from: 'Tijn Schmits', subject: 'Our visit on 10 june' },
-      { createdAt: new Date().getTime(), from: 'Tijn Schmits', subject: 'Our visit on 10 june' }
-    ];
+    const emails = getMessagesByMailbox(this.props.mailboxId, this.props.state).map(message => ({
+      from: message.origin.from[0].name,
+      subject: message.subject,
+      createdAt: message.received
+    }));
 
     const viewer = this.renderEmailItem();
     let viewerPane = null;
@@ -43,4 +44,15 @@ class Inbox extends React.Component {
   }
 };
 
-export default Inbox;
+const mapStateToProps = (state, props) => {
+  return { state }
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+const ConnectedMailbox= connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Mailbox);
+
+export default ConnectedMailbox;
