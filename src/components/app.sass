@@ -1,7 +1,7 @@
+@import '../assets/colors.sass';
+
 $header-height: 60px
 $navbar-width: 240px
-
-$text-color: #6e6e6e
 
 .headerContainer
   height: $header-height
@@ -21,22 +21,22 @@ $text-color: #6e6e6e
 
 .navbarContiner
   max-width: $navbar-width
-  color: $text-color
+  color: $gray-normal
   padding-right: 0px
   padding-left: 0px
 
 .textStart
-  color: #5d7fd7
+  color: $blue-special
 
 .textMail
   color: #f14f4f
 
 .title
   font-size: 2.2em
-  color: #303949
+  color: $blue-darker
 
 .mainContainer
-  background-color: #dcdcdc
+  background-color: $gray-normal
   padding: 10px
 
 .menuItem
@@ -47,23 +47,23 @@ $text-color: #6e6e6e
   line-height: 2.5em
   font-weight: bold
   cursor: pointer
-  background-color: #f0f0f0
+  background-color: $gray
   transition: background-color 300ms linear;
 
   &:hover
-    background-color: #dfdfdf
+    background-color: $gray-light
     transition: background-color 200ms linear;
 
 .menuItemActive 
-  background-color: #d8e5f9
+  background-color: $blue-light
   color: #303949
   cursor: default
   &:hover
-    background-color: #d8e5f9
+    background-color: $blue-light
 
 .devider
   height: 1px
-  background-color: #dfdfdf
+  background-color: $gray-light
 
 .menuAnchor
   color: ihnerit
