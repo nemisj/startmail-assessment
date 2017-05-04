@@ -81,7 +81,12 @@ export function load(mailboxId) {
       // simulate data loading process
       setTimeout(() => {
         // find messages of mailboxk
-        const messages = _filterMailboxMessagses(mailboxId, jsonData, globalState);
+        const messages = _filterMailboxMessagses(mailboxId, jsonData, globalState).map((item) => {
+          // normalize id's so that we can do strict compare
+          return Object.assign(item, {
+            id: String(item.id)
+          });
+        });
         resolve(messages);
       }, 1000);
     })

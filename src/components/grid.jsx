@@ -6,7 +6,16 @@ import moment from 'moment';
 import styles from './grid.sass';
 
 class Grid extends React.Component {
-  renderItem(key, from, createdAt, subject) {
+  onClick(item) {
+    const click = this.props.onClick;
+    if (typeof click === 'function') {
+      click(item);
+    }
+  }
+
+  renderItem({ id, from, createdAt, subject }) {
+    const key = id;
+
     const format = {
       sameDay: '[Today at] HH:mm',
       nextDay: '[Tomorrow]',
@@ -16,8 +25,10 @@ class Grid extends React.Component {
       sameElse: 'DD/MM/YYYY'
     };
 
+    const selectedClass = this.props.selected.indexOf(id) !== -1 ? styles.selected :  '';
+
     return (
-      <div className={`row ${styles.row}`} key={key}>
+      <div onClick={() => this.onClick(id)} className={`row ${styles.row} ${selectedClass}`} key={key}>
         <div className="col-8">
           <b className={styles.from}>{from}</b>
           <br/>
@@ -31,7 +42,7 @@ class Grid extends React.Component {
   render() {
     let children = null;
     if (Array.isArray(this.props.items)) {
-      children = this.props.items.map((item, index) => this.renderItem(index, item.from, item.createdAt, item.subject));
+      children = this.props.items.map((item, index) => this.renderItem(item));
     }
 
     return (
