@@ -34,5 +34,5 @@ render();
 
 if (module.hot) {  
   // Renders App every time a change in code happens.
-  module.hot.accept('./components/app.jsx', render);
+  module.hot.accept('./barrels/app.jsx', render);
 }
