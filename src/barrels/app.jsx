@@ -4,7 +4,8 @@ import {
   HashRouter as Router,
   Route,
   NavLink,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -13,11 +14,6 @@ import styles from './app.sass';
 // components
 import Button from '../components/button.jsx';
 import Mailbox from './mailbox.jsx';
-import {
-  Drafts,
-  Sent,
-  Trash
-} from '../barrels/skeletons.jsx';
 
 class App extends React.Component {
   renderNavBar() {
@@ -48,23 +44,25 @@ class App extends React.Component {
   }
 
   renderMainContent() {
-    const routes = [];
     const mailboxesState = this.props.mailboxesState;
 
-    mailboxesState.data.forEach((mailbox) => {
-      routes.push(
-        <Switch key={mailbox.id}>
-          <Route exact path={`/${mailbox.type}/view/:emailId`} render={route => (
-            <Mailbox mailboxId={mailbox.id} emailId={route.match.params.emailId}/>
-          )}/>
-          <Route path={`/${mailbox.type}/`} render={route => (<Mailbox mailboxId={mailbox.id}/>)} />
-        </Switch>
-      );
-    });
+    // take the first mailbox as default
+    const routes = mailboxesState.data.map(mailbox => (
+      <Switch key={mailbox.id}>
+        <Route exact path={`/${mailbox.type}/view/:emailId`} render={route => (
+          <Mailbox mailboxId={mailbox.id} emailId={route.match.params.emailId}/>
+        )}/>
+        <Route path={`/${mailbox.type}/`} render={route => (<Mailbox mailboxId={mailbox.id}/>)} />
+      </Switch>
+    ));
+
+    const def = mailboxesState.data[0];
+
+    const defaultRoute = def ? (<Redirect to={`/${def.type}/`} />) : <Mailbox />
 
     return (
       <div className={`col no-gutters`}>
-        <Route exact path="/" component={Mailbox} />
+        <Route exact path="/" render={() => defaultRoute }/>
         {routes}
       </div>
     );
