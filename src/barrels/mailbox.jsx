@@ -6,6 +6,8 @@ import moment from 'moment';
 
 import Grid from '../components/grid.jsx';
 
+import Spinner from '../components/spinner.jsx';
+
 import styles from './mailbox.sass';
 
 import { load as loadMessages, getMessagesByMailbox } from '../redux/ducks/messages.js';
@@ -68,7 +70,19 @@ class Mailbox extends React.Component {
     history.push(`${origin}/view/${item}`);
   }
 
-  render() {
+  renderContent() {
+    let loadingPane = null;
+    if (this.props.messagesState.loading) {
+      loadingPane = (
+        <div className={styles.loadingPane}>
+          <div className={styles.loadingOvelay} />
+          <div className={styles.loadingContent}>
+            <Spinner />
+          </div>
+        </div>
+      );
+    }
+
     const emails = this.props.messagesState.messages.map(message => ({
       id: message.id,
       from: message.origin.from[0].name,
@@ -88,13 +102,20 @@ class Mailbox extends React.Component {
     }
 
     return (
-      <div className={`inbox ${styles.inbox} container-fluid full-height`}>
-        <div className="row full-height">
-          <div className="col no-gutters">
-            <Grid items={emails} selected={selected} onClick={this.onClick} />
-          </div>
-          {viewerPane}
+      <div className="row full-height">
+        <div className="col no-gutters">
+          <Grid items={emails} selected={selected} onClick={this.onClick} />
         </div>
+        {viewerPane}
+        {loadingPane}
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className={`inbox ${styles.inbox} container-fluid full-height`}>
+        {this.renderContent()}
       </div>
     );
   }
