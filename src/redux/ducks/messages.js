@@ -77,7 +77,7 @@ export function load(mailboxId) {
     const globalState = getState();
     dispatch({ type: LOAD, mailboxId });
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       // simulate data loading process
       setTimeout(() => {
         // find messages of mailboxk

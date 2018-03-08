@@ -19,14 +19,12 @@ export function reducer (state = initialState(), action = {}) {
         loading: true,
         loaded: false
       });
-      break;
     case LOAD_SUCCESS:
       return Object.assign({}, state, {
         loading: false,
         loaded: true,
         data: action.result
       });
-      break
     case LOAD_FAIL:
       return Object.assign({}, state, {
         loading: false,
@@ -34,7 +32,6 @@ export function reducer (state = initialState(), action = {}) {
         data: [],
         error: action.error
       });
-      break;
   }
 
   return state;
@@ -59,7 +56,7 @@ export function getMailBox(id, globalState) {
 export function load() {
   return (dispatch) => {
     dispatch({ type: LOAD });
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       // simulate data loading process
       setTimeout(() => {
         resolve(jsonData);
